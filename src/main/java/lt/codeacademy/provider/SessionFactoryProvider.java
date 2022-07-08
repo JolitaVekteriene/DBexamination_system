@@ -1,7 +1,7 @@
 package lt.codeacademy.provider;
 
-import lt.codeacademy.entity.Exam;
-import lt.codeacademy.entity.User;
+import lt.codeacademy.entity.Question;
+import lt.codeacademy.entity.ExamProgram;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -11,20 +11,20 @@ import static org.hibernate.cfg.AvailableSettings.*;
 
 public class SessionFactoryProvider {
 
-    private static SessionFactoryProvider instance;
+    private static SessionFactoryProvider instance; //1.apie si objekta visi zino (static) ir naujas nekuriamas
     private SessionFactory sessionFactory;
 
     private SessionFactoryProvider() {
-        Configuration configuration = new Configuration();
+        Configuration configuration = new Configuration(); //is hibernate
         configuration.setProperties(getProperties()); //sudedam properties
 
-        configuration.addAnnotatedClass(User.class);    //rysys, kur enticiai yra sumepinam
-        configuration.addAnnotatedClass(Exam.class);
+        configuration.addAnnotatedClass(ExamProgram.class);    //rysys, kur enticiai yra sumepinam
+        configuration.addAnnotatedClass(Question.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }
 
-    public static SessionFactoryProvider getInstance() {            //grazina objekta sukurta
+    public static SessionFactoryProvider getInstance() {            //2.grazina objekta sukurta
         if (instance == null) {                                     //kai instance = o, kuriam nauja objekta
             instance = new SessionFactoryProvider();
         }

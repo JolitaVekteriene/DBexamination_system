@@ -1,10 +1,10 @@
 package lt.codeacademy;
 
-import lt.codeacademy.controller.UserInterfaceController;
+import lt.codeacademy.controller.ExamProgramInterfaceController;
 
 public class AplicationMain {
     public static void main(String[] args) {
-        UserInterfaceController controller = new UserInterfaceController();
+        ExamProgramInterfaceController controller = new ExamProgramInterfaceController();
         controller.startApplication();      //paleidziam meniu
     }
 }
