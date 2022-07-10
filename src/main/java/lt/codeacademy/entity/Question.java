@@ -22,12 +22,10 @@ public class Question {
     private String answerC;
     private String correctAnswer;
 
-
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn (name = "examProgram_id")
     private ExamProgram examProgram;
-//konstruktorius
+
 
     public Question(String question, String answerA, String answerB, String answerC, String correctAnswer) {
         this.question = question;

@@ -4,7 +4,7 @@ import lt.codeacademy.entity.ExamProgram;
 
 import java.util.List;
 
-public class ExamProgramRepository extends AbstractRepository{   //darbas su DB priima is User Serviso
+public class ExamProgramRepository extends AbstractRepository{
         public void createExamProgram(ExamProgram examProgram) {
             modifyEntity(session -> session.persist(examProgram));
         }

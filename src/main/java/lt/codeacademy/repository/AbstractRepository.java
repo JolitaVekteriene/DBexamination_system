@@ -16,9 +16,9 @@ abstract class AbstractRepository {
     }
 
     void modifyEntity(Consumer<Session> consumer) {
-        Transaction transaction = null;     //SUKURIAM OBJEKTA, KAD GALETUM GRAZINTI
-        try (Session session = sessionFactory.openSession()) { //atnaujinti irasyti irasa i DB
-            transaction = session.beginTransaction(); //TRANS.- PRISKIRIAM KINTAMAJI
+        Transaction transaction = null;
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
 
             consumer.accept(session);
 

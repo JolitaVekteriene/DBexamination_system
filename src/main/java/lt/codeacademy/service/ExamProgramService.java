@@ -5,7 +5,7 @@ import lt.codeacademy.repository.ExamProgramRepository;
 
 import java.util.List;
 
-public class ExamProgramService {      //biznio logika
+public class ExamProgramService {
     private final ExamProgramRepository repository;
 
     private final ExamProgramRepository repository() {

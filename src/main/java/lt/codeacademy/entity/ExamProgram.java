@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 import java.util.Set;
-
 
 @Setter
 @Getter
@@ -25,7 +23,7 @@ public class ExamProgram {
     private String editQuestion;
     private String statistics;
 
-    @OneToMany(mappedBy = "examProgram", cascade = CascadeType.ALL, fetch = FetchType.EAGER) //cascade - kad galetume istrinti exam
+    @OneToMany(mappedBy = "examProgram", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Question> questions;
 
     public ExamProgram(String examName, String userId, String newQuestion, String editQuestion, String statistics) {

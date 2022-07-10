@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ExamProgramInterfaceController {
-    private final Scanner scanner;              //3.
+    private final Scanner scanner;
     private final ExamProgramService examProgramService;
     private final QuestionService questionService;
 
@@ -19,7 +19,7 @@ public class ExamProgramInterfaceController {
         questionService = new QuestionService();
     }
 
-    public void startApplication() {    //2.rodysim meniu kol nepaspaus 5
+    public void startApplication() {
         String action;
         do {
             showMenu();
@@ -28,57 +28,30 @@ public class ExamProgramInterfaceController {
         } while (!action.equals("6"));
     }
 
-    private void showMenu() {       //1.
+    private void showMenu() {
         System.out.println("""
                 1. Create exam program
                 2. Create questions
-                3. Update exam
-                4. Take an exam
+                3. Update questions
+                4. Take exam
                 5. View exam statistics
                 6. Exit
                 """);
     }
 
-    private void selectAction(String action) {      //4.1
+    private void selectAction(String action) {
         switch (action) {
             case "1" -> createExamProgram();
-            case "2" -> createQuestions();
-            case "3" -> System.out.println ("updateQuestions()");
-            case "4" -> System.out.println ("takeExam()");
-            case "5" -> System.out.println ("viewExamStatistics()");
+            case "2" -> createQuestion();
+            case "3" -> System.out.println("updateQuestions()");
+            case "4" -> System.out.println("takeExam()");
+            case "5" -> System.out.println("viewExamStatistics()");
             case "6" -> System.out.println("System turning of");
             default -> System.out.println("action does not exist");
         }
     }
 
-    private void createQuestions() {                 //5.
-        System.out.println("Insert question");
-        String question = scanner.nextLine();
-        System.out.println("Insert answer A");
-        String answerA = scanner.nextLine();
-        System.out.println("Insert answer B");
-        String answerB = scanner.nextLine();
-        System.out.println("Insert answer C");
-        String answerC = scanner.nextLine();
-        System.out.println("Insert correct answer");
-        String correctAnswer = scanner.nextLine();
-
-        Question question1 = new Question(question, answerA, answerB, answerC, correctAnswer);
-        questionService.createQuestion(question1); //iskviecia servisa, kuris sako sukurk user
-        // (User service class - servisas turi repository -
-        // objekta, is to objekto kvieciame createUser)
-    }
-
-    private void createExamProgram() {
-        List<ExamProgram> exams = examProgramService.getExamProgram();
-        for (ExamProgram examProgram : exams) {
-            System.out.printf("%s. %s %s\n", examProgram.getId(), examProgram.getExamName(), examProgram.getUserId(),
-                                             examProgram.getNewQuestion(), examProgram.getEditQuestion(), examProgram.getStatistics());
-        }
-
-        System.out.println("Select examProgram");            //priskirti klausima Egzaminui
-        ExamProgram examProgram = getExamProgram(exams);
-
+    public void createExamProgram() {
         System.out.println("Insert exam Name");
         String examName = scanner.nextLine();
         System.out.println("Insert userId");
@@ -90,14 +63,26 @@ public class ExamProgramInterfaceController {
         System.out.println("Look statistics");
         String statistics = scanner.nextLine();
 
-        ExamProgram exam = new ExamProgram (examName, userId, newQuestion, editQuestion, statistics);
+        ExamProgram exam = new ExamProgram(examName, userId, newQuestion, editQuestion, statistics);
         examProgramService.createExamProgram(exam);
-
-        //iskviecia servisa, kuris sako sukurk user
-        // (User service class - servisas turi repository -
-        // objekta, is to objekto kvieciame createUser)
     }
 
+        public void createQuestion() {
+        List<ExamProgram> examPrograms = examProgramService.getExamProgram();
+        for (ExamProgram examProgram : examPrograms) {
+
+           System.out.printf("%s. %s %s %s %s %s %s\n", examProgram.getId(), examProgram.getExamName(), examProgram.getUserId(),
+                                            examProgram.getNewQuestion(), examProgram.getEditQuestion(), examProgram.getStatistics());
+       }
+
+        System.out.println("Select examProgram");
+        ExamProgram examProgram = getExamProgram (examPrograms);
+        System.out.println("Insert question");
+
+        Question question = new Question();
+        question.setExamProgram(examProgram);
+        questionService.createQuestion(question);
+    }
 
     private ExamProgram getExamProgram(List<ExamProgram> examPrograms) {
         ExamProgram examProgram;
@@ -118,8 +103,7 @@ public class ExamProgramInterfaceController {
             try {
                 return Long.valueOf(scanner.nextLine());
             } catch (Exception e) {
-                System.out.println("Incorect number, please try again");
-
+                System.out.println("Incorrect number, please try again");
             }
         }
     }

@@ -14,5 +14,5 @@ public class QuestionService {
         public void createQuestion(Question question){
             repository.createQuestion(question);
         }
-    }
+}
 
