@@ -67,16 +67,16 @@ public class ExamProgramInterfaceController {
         examProgramService.createExamProgram(exam);
     }
 
-        public void createQuestion() {
+    public void createQuestion() {
         List<ExamProgram> examPrograms = examProgramService.getExamProgram();
         for (ExamProgram examProgram : examPrograms) {
 
-           System.out.printf("%s. %s %s %s %s %s %s\n", examProgram.getId(), examProgram.getExamName(), examProgram.getUserId(),
-                                            examProgram.getNewQuestion(), examProgram.getEditQuestion(), examProgram.getStatistics());
-       }
+            System.out.printf("%s. %s %s %s %s %s %s\n", examProgram.getId(), examProgram.getExamName(), examProgram.getUserId(),
+                    examProgram.getNewQuestion(), examProgram.getEditQuestion(), examProgram.getStatistics());
+        }
 
         System.out.println("Select examProgram");
-        ExamProgram examProgram = getExamProgram (examPrograms);
+        ExamProgram examProgram = getExamProgram(examPrograms);
         System.out.println("Insert question");
 
         Question question = new Question();

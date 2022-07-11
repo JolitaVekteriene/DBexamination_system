@@ -16,18 +16,16 @@ public class ExamProgramService {
         repository = new ExamProgramRepository();
     }
 
-    public void createExamProgram (ExamProgram examProgram) {
+    public void createExamProgram(ExamProgram examProgram) {
         repository.createExamProgram(examProgram);
     }
 
     public List<ExamProgram> getExamProgram() {
         return repository.getExamPrograms();
-
     }
 
     public void updateExamProgram(ExamProgram examProgram) {
         repository.updateExamProgram(examProgram);
     }
-
 }
 

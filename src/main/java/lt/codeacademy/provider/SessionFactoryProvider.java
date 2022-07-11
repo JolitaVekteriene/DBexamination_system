@@ -4,7 +4,9 @@ import lt.codeacademy.entity.Question;
 import lt.codeacademy.entity.ExamProgram;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
 import java.util.Properties;
+
 import static org.hibernate.cfg.AvailableSettings.*;
 
 public class SessionFactoryProvider {

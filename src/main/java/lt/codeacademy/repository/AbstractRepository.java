@@ -31,7 +31,7 @@ abstract class AbstractRepository {
         }
     }
 
-    <V> V getValue (Function<Session, V> function) {
+    <V> V getValue(Function<Session, V> function) {
         try (Session session = sessionFactory.openSession()) {
             return function.apply(session);
         } catch (Exception e) {

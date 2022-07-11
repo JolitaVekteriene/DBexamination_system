@@ -23,7 +23,7 @@ public class Question {
     private String correctAnswer;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn (name = "examProgram_id")
+    @JoinColumn(name = "examProgram_id")
     private ExamProgram examProgram;
 
 
